@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2efa020f8a176c4e9526da73ee26193, type: 3}
+  m_Name: GameFSMSO
+  m_EditorClassIdentifier: 
+  assemblyName: TacticalRPG
+  states:
+  - stateName: "\u5927\u5385\u4E2D"
+    stateClass: InHallState
+    isDefaultState: 1
+  - stateName: "\u51C6\u5907\u4E2D"
+    stateClass: PreparationState
+    isDefaultState: 0
+  - stateName: "\u6E38\u620F\u4E2D"
+    stateClass: GamingState
+    isDefaultState: 0
+  - stateName: "\u6E38\u620F\u7ED3\u7B97"
+    stateClass: GameSettlementState
+    isDefaultState: 0
+  transfers:
+  - startState: "\u5927\u5385\u4E2D"
+    transition: GameReady
+    endState: "\u51C6\u5907\u4E2D"
+  - startState: "\u51C6\u5907\u4E2D"
+    transition: EnterGame
+    endState: "\u6E38\u620F\u4E2D"
+  - startState: "\u6E38\u620F\u4E2D"
+    transition: GameOver
+    endState: "\u6E38\u620F\u7ED3\u7B97"
+  - startState: "\u6E38\u620F\u7ED3\u7B97"
+    transition: ConfirmSettlement
+    endState: "\u5927\u5385\u4E2D"
